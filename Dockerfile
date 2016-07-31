@@ -1,0 +1,3 @@
+FROM node:4-onbuild
+EXPOSE 8089
+EXPOSE 8090
