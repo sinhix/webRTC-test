@@ -1,7 +1,7 @@
 {
-  "name": "streamroot-test-recrutement",
+  "name": "sinhix-test-recrutement",
   "version": "0.0.1",
-  "description": "Streamroot's test for applicant developpers",
+  "description": "sinhix's test for applicant developpers",
   "main": "index.js",
   "scripts": {
     "test": "node_modules/mocha/bin/mocha",
