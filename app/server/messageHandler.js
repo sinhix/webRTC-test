@@ -23,6 +23,11 @@ function onInit(ws, id){
     console.log("init from peer:", id);
     ws.id = id;
     connectedPeers[id] = ws;
+    // Sending list of peers on intialize
+    connectedPeers[id].send(JSON.stringify({
+        type: 'init',
+        peers: Object.keys(connectedPeers)
+    }));
 }
 
 function onOffer(offer, destination, source){

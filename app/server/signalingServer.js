@@ -7,6 +7,8 @@ wss.on('connection', function connection(ws) {
     console.log('connection from a client');
     ws.on('message', function incoming(message) {
         var objMessage = JSON.parse(message);
+        console.log('received message');
+        console.log(objMessage);
         messageHandler(ws, objMessage);
     });
 });

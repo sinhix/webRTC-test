@@ -12,6 +12,7 @@ function SignalingChannel(id){
     }
 
     function _onConnectionEstablished(){
+        console.log('_onConnectionEstablished');
         _sendMessage('init', id);
     }
 
@@ -25,8 +26,12 @@ function SignalingChannel(id){
 
 
     function _onMessage(evt){
+        console.log('_onMessage');
         var objMessage = JSON.parse(evt.data);
         switch (objMessage.type) {
+            // Allow "init" message ty[e
+            case "init":
+                break;
             case "ICECandidate":
                 self.onICECandidate(objMessage.ICECandidate, objMessage.source);
                 break;
@@ -47,6 +52,8 @@ function SignalingChannel(id){
         message[type] = data;
         message.destination = destination;
         _ws.send(JSON.stringify(message));
+        console.log('message sent');
+        console.log(JSON.stringify(message));
     }
 
     function sendICECandidate(ICECandidate, destination){

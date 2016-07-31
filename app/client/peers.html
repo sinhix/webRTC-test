@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Peers page</title>
+    <script src="signalingChannelFactory.js"></script>
+    <script src="peers.js"></script>
+    <script language="javascript" type="text/javascript">
+        // Ask user to input session id to avoid conflict
+        // @todo generate id
+        var CALLER_ID = prompt("Please enter your id", "42");
+        window.addEventListener("load", function(){
+            var received = document.getElementById('received')
+
+            // RTC displayed data
+            initPeer(function(message){
+                var newText = document.createTextNode(message);
+                console.log('initPeer callback');
+                console.log(message);
+                received.appendChild(newText);
+            });
+
+            // Create communication
+            startCommunication();
+
+            // Send message in textarea
+            document.getElementById("send").onclick= function(){
+                var message = document.getElementById('message').value;
+                channel.send(message);
+            };
+        }, false);
+    </script>
+</head>
+<body>
+    <h2>Peers page</h2>
+    <textarea id="message"></textarea>
+    <p id="received"></p>
+    <button id="send">Send message</button>
+</body>
+</html>
